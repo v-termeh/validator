@@ -1,6 +1,6 @@
 # Utils
 
-Utility functions for DOM, HTTP, and common browser operations.
+Extra validators and validator composable for Zod.
 
 ![NPM Version](https://img.shields.io/npm/v/@v-termeh/validator)
 ![NPM Downloads](https://img.shields.io/npm/dw/@v-termeh/validator)
