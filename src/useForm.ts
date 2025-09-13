@@ -143,6 +143,39 @@ export function useForm<T = Record<string, unknown>>(
     }
 
     // Helpers
+    function toFormData(values: Record<string, unknown>): FormData {
+        const data = new FormData();
+
+        for (const key in values) {
+            const value = values[key];
+
+            if (value === undefined) continue;
+
+            // Single File
+            if (value instanceof File) {
+                data.append(key, value);
+                continue;
+            }
+
+            // Array or FileList of Files
+            if (Array.isArray(value) && value.every((v) => v instanceof File)) {
+                Array.from(value as File[]).forEach((f) => data.append(key, f));
+                continue;
+            }
+
+            // Arrays or Objects -> JSON string
+            if (typeof value === "object") {
+                data.append(key, JSON.stringify(value));
+                continue;
+            }
+
+            // Other values (string, number, boolean)
+            data.append(key, String(value));
+        }
+
+        return data;
+    }
+
     function scrollToFirstError() {
         for (const [name, field] of fields.value) {
             if (errors.isFailed(name).value) {
@@ -178,6 +211,7 @@ export function useForm<T = Record<string, unknown>>(
         onFail,
         invalidate,
         parseErrorResponse,
+        toFormData,
         scrollToFirstError,
     };
 }
