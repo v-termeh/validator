@@ -1,5 +1,6 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
 import dts from "vite-plugin-dts";
 
 /// <reference types="vitest" />
@@ -15,13 +16,16 @@ export default defineConfig({
             formats: ["es", "cjs", "umd"],
         },
         rollupOptions: {
-            external: [],
+            external: ["vue"],
             output: {
-                globals: {},
+                globals: {
+                    vue: "Vue",
+                },
             },
         },
     },
     plugins: [
+        vue(),
         dts({
             insertTypesEntry: true,
             copyDtsFiles: true,

@@ -25,6 +25,7 @@
         "noFallthroughCasesInSwitch": true,
         /* Include vite types */
         "types": [
+            "vue",
             "vite/client"
         ]
     },

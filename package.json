@@ -33,18 +33,21 @@
         "zod"
     ],
     "scripts": {
-        "test": "vitest",
+        "test": "vite --config vite.config.ts demo",
         "build": "vite build",
         "prepare": "npm run build"
     },
     "devDependencies": {
         "@types/node": "^24.3.0",
+        "@vitejs/plugin-vue": "^6.0.1",
         "typescript": "^5.9.2",
         "vite": "^7.1.3",
-        "vite-plugin-dts": "^4.5.4",
-        "vitest": "^3.2.4"
+        "vite-plugin-dts": "^4.5.4"
     },
     "peerDependencies": {
-        "zod": "^4.1.5"
+        "vue": "^3.5.21",
+        "yup": "^1.7.0",
+        "@v-termeh/utils": "^0.0.7",
+        "nanoid": "^5.1.5"
     }
 }
