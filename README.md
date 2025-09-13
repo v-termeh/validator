@@ -1,6 +1,6 @@
 # Utils
 
-Extra validators and validator composable for Zod.
+Extra validators and validator composable for Yup.
 
 ![NPM Version](https://img.shields.io/npm/v/@v-termeh/validator)
 ![NPM Downloads](https://img.shields.io/npm/dw/@v-termeh/validator)

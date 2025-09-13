@@ -5,7 +5,7 @@
     "license": "ISC",
     "version": "0.0.1",
     "name": "@v-termeh/validator",
-    "description": "Reusable Vue 3 composables for common development tasks.",
+    "description": "Extra validators and validator composable for Yup.",
     "main": "./dist/validator.umd.js",
     "module": "./dist/validator.es.js",
     "types": "./dist/validator.d.ts",
@@ -30,7 +30,7 @@
     },
     "keywords": [
         "validator",
-        "zod"
+        "yup"
     ],
     "scripts": {
         "test": "vitest",
