@@ -22,6 +22,7 @@ export interface FieldOption<T = unknown, TInput = T> {
     trigger: "change" | "submit";
     initialValue?: TInput;
     debounce?: number;
+    cast?: boolean;
     transformer?: (value: TInput) => T;
 }
 

@@ -25,6 +25,7 @@ export function useField<T = unknown, TInput = T>(
         trigger = "submit",
         initialValue,
         debounce = 200,
+        cast = false,
         transformer,
     } = options;
 
@@ -78,13 +79,13 @@ export function useField<T = unknown, TInput = T>(
         const token = ++currentValidateToken;
 
         try {
-            const parsed = await schema.validate(data.value);
+            data.value = cast ? schema.cast(data.value) : data.value;
+            await schema.validate(data.value);
 
             // If another validate has started meanwhile, discard this result
             if (token !== currentValidateToken) return false;
 
             ctx.clearErrors(name);
-            data.value = parsed;
             return true;
         } catch (err) {
             if (token !== currentValidateToken) return false;

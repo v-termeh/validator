@@ -54,7 +54,9 @@
 
 <script setup lang="ts">
 import * as yup from "yup";
-import { useForm, useField } from "../src";
+import { useForm, useField, installValidator } from "../src";
+
+installValidator("username");
 
 const {
     ctx,
@@ -78,6 +80,7 @@ const {
             username: {
                 min: "3 Character at least",
                 exists: "Username already taken",
+                username: "Invalid username pattern",
                 "*": "Enter username",
             },
             email: {
@@ -87,6 +90,7 @@ const {
             password: {
                 min: "6 Character at least",
                 required: "Enter Password",
+                notType: "invalid password type",
             },
         },
     },
@@ -108,7 +112,7 @@ const {
     value: username,
     error: usernameError,
     isFailed: usernameFailed,
-} = useField(ctx, "username", yup.string().required().min(3), {
+} = useField(ctx, "username", yup.string().required().min(3).username(), {
     trigger: "change",
     initialValue: "",
 });
@@ -118,8 +122,9 @@ const {
     value: password,
     error: passwordError,
     isFailed: passwordFailed,
-} = useField(ctx, "password", yup.string().required().min(6), {
+} = useField(ctx, "password", yup.number().required().min(6), {
     initialValue: "",
+    cast: true,
 });
 
 onFail(() => alert("Failed!"));
