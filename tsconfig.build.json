@@ -13,6 +13,7 @@
     "exclude": [
         "dist",
         "demo",
+        "tests",
         "node_modules",
     ]
 }
