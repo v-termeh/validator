@@ -2,6 +2,7 @@ import { resolve } from "path";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import dts from "vite-plugin-dts";
+import pkg from "./package.json";
 
 /// <reference types="vitest" />
 // Configure Vitest (https://vitest.dev/config/)
@@ -13,15 +14,10 @@ export default defineConfig({
             name: "validator",
             entry: resolve(__dirname, "src", "index.ts"),
             fileName: (format) => `validator.${format}.js`,
-            formats: ["es", "cjs", "umd"],
+            formats: ["es", "cjs"],
         },
         rollupOptions: {
-            external: ["vue"],
-            output: {
-                globals: {
-                    vue: "Vue",
-                },
-            },
+            external: [...Object.keys(pkg.peerDependencies || {})],
         },
     },
     plugins: [
